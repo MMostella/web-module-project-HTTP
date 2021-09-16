@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-const EditMovieForm = (props) => {
+const AddMovieForm = (props) => {
 	const { push } = useHistory();
 	const { id } = useParams();
 
@@ -35,11 +35,11 @@ const EditMovieForm = (props) => {
     const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.put(`http://localhost:5000/api/movies/${id}`, movie)
+			.post(`http://localhost:5000/api/movies/`, movie)
 			.then(res => {
 				props.setMovies(res.data)
 				push(`/api/movies`)
-				// console.log(res)
+				// console.log('Submitted', res)
 			})
 			.catch(err => console.log(err))
 	}
@@ -85,4 +85,4 @@ const EditMovieForm = (props) => {
 	</div>);
 }
 
-export default EditMovieForm;
+export default AddMovieForm;
