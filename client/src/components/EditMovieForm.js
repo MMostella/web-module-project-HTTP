@@ -34,6 +34,14 @@ const EditMovieForm = (props) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
+		axios
+			.put(`http://localhost:5000/api/movies/${id}`, movie)
+			.then(res => {
+				props.setMovies(res.data)
+				push(`/api/movies`)
+				// console.log(res)
+			})
+			.catch(err => console.log(err))
 	}
 	
 	const { title, director, genre, metascore, description } = movie;
